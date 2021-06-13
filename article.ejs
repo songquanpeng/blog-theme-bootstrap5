@@ -1,10 +1,10 @@
 <%- include('./partials/header') %>
+<div class="container px-lg-2 pb-3 bg-white">
+    <div class="row mb-3">
+        <div id="left" class="col-xl-8 pr-xl-5 pt-xl-3 pt-0">
+            <%- include('./partials/page-info') %>
+            <article id="article" class="markdown-body" style="padding: 16px 24px">
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-7 offset-md-1 main-content">
-            <article id="article" class="shadow-box" style="padding: 16px 24px">
-                <%- include('./partials/page-info') %>
                 <%- page.converted_content %>
                 <p class="copyright"><strong>Links: <a href="<%- page.link %>"><%- page.link %></a></strong></p>
                 <%- config.copyright %>
@@ -13,27 +13,37 @@
             <%- include('./partials/prev-next') %>
             <%- include('./partials/comment') %>
         </div>
-        <div class="col-md-3">
+        <div id="right" class="col-xl-4 pt-3">
             <% if(page.categoryList.length > 1) { %>
-            <div class="card shadow-box" style="margin-bottom: 16px">
-                <div class="card-body" style="padding: 20px 32px 8px 32px">
-                    <h5>Category: <%- page.category %></h5>
-                    <ul class="toc-list">
-                        <% page.categoryList.forEach((p)=>{ %>
-                        <li><a href="/page/<%= p.link %>"><%= p.title %></a></li>
-                        <% }) %>
-                    </ul>
-                </div>
-            </div>
+                <section id="profile" class="mt-4 bg-white d-xl-block d-none">
+                    <div class="card">
+                        <div class="card-header">专题：<%- page.category %></div>
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="mt-4 mb-4point5 w-100 d-flex justify-content-center">
+                                <ul class="toc-list">
+                                    <% page.categoryList.forEach((p)=>{ %>
+                                        <li><a href="/page/<%= p.link %>"><%= p.title %></a></li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             <% } %>
-            <div class="shadow-box toc sticky-top">
-                <div class="card-body" style="padding: 20px 32px 8px 32px">
-                    <h5>Table Of Content</h5>
-                    <ul id="toc" class="toc-list">
 
-                    </ul>
+            <section id="tags" class="mt-4 mb-5 bg-white">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-tags mr-2"></i>
+                        目录
+                    </div>
+                    <div class="card-body">
+                        <ul id="toc" class="toc-list">
+
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 </div>

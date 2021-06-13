@@ -1,56 +1,75 @@
 <%- include('./partials/header') %>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-7 offset-md-1 main-content">
+<div class="container px-lg-2 pb-3 bg-white">
+    <div class="row mb-3">
+        <div id="left" class="col-xl-8 pr-xl-5 pt-xl-3 pt-0">
             <% if (pages.length){ %>
                 <% pages.forEach((page)=>{ %>
-                    <div class="box">
-                        <div class="card article-list shadow-box bg-transparent">
-                            <div class="card-body">
-                                <h4 class="card-title font-weight-bold"
-                                    style="cursor: pointer"><a href="/page/<%= page.link %>"
-                                                               style="color: black"><%= page.title ? page.title : 'No title' %></a>
-                                </h4>
-                                <div class="card-tag">
-                                    <% page.tag.trim().split(" ").forEach(function (tag) { if(tag !== ""){ %>
-                                        <span class="badge badge-primary badge-hover"><a href='/tag/<%= tag %>'
-                                                                                         style="color: white"><%= tag %></a></span>
-                                    <% }}); %>
-                                    <span class="badge badge-success badge-hover"><%= page.author %></span>
-                                    <span class="badge badge-secondary badge-hover">
-                                <a style="color: white"
-                                   href="/archive/<%= page.createdAt.split('-')[0] + '/' + page.createdAt.split('-')[1] %>"><%= page.createdAt.substring(0, 10) %></a>
-                            </span>
-                                    <span class="badge badge-info badge-hover">Views: <%= page.view %></span>
+                    <div class="list-item border-bottom pt-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="item-left d-flex flex-column" style="justify-content: space-evenly;">
+                                <a href="/page/<%= page.link %>" class="text-body">
+                                    <h4 class="p-0 m-0 fw-bold text-break">
+                                        <%= page.title ? page.title : 'No title' %>
+                                    </h4>
+                                </a>
+                                <div class="d-flex align-items-center">
+                                    <div class="post-summary text-muted text-break"><%= page.description ? page.description : "No description" %></div>
                                 </div>
-                                <p class="card-text">
-                                    <%= page.description ? page.description : "No description" %>
-                                </p>
+                                <small>
+                                    <% page.tag.trim().split(" ").forEach(function (tag) { if(tag !== ""){ %>
+                                        <span class="me-3 fw-bold d-md-inline ">
+                                            <i class="bi bi-tags-fill"></i>
+                                            <a class="text-body mr-1" href='/tag/<%= tag %>'><%= tag %></a>
+                                        </span>
+                                    <% }}); %>
+                                    <span class="me-3"><i class="bi bi-calendar2-week-fill"></i>
+                                        <a href="/archive/<%= page.createdAt.split('-')[0] + '/' + page.createdAt.split('-')[1] %>"> <%= page.createdAt.substring(0, 10) %></a></span>
+                                    <span><i class="bi bi-eye-fill"></i> <%= page.view %> 次浏览</span>
+                                </small>
                             </div>
                         </div>
                     </div>
             <% })} %>
 
             <%- include('./partials/paginator') %>
+
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-box" style="margin-bottom: 16px">
-                <div class="card-body">
-                    <h5 class="card-title"><%= config.site_name %></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><%= config.description %></h6>
-                    <% if(config.brand_image) { %>
-                        <img src="<%= config.brand_image %>" class="card-img-top" alt="brand_image">
-                    <% }%>
-                    <p class="card-text">
-                        Memory occupied: <%= (process.memoryUsage().rss / (1024 *1024)).toFixed(2) %> MB
-                    </p>
-                    <a href="https://github.com/songquanpeng/blog" class="card-link">System: <%= systemName %></a>
-                    <a href="https://github.com/songquanpeng/blog-theme-bootstrap" class="card-link">Theme: Bootstrap</a>
+        <div id="right" class="col-xl-4 pt-3 sticky-top">
+            <section id="profile" class="mt-4 bg-white d-xl-block d-none">
+                <div class="card">
+                    <div class="card-header">关于</div>
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="mt-4 mb-4point5 w-100 d-flex justify-content-center">
+                            <div class="w-50 text-right mr-3" style="text-align: center">
+                                <img src="<%= config.brand_image %>" class="card-img-top rounded-circle" style="width: 6.5rem; height: 6.5rem" alt="brand_image">
+                            </div>
+                            <div class="w-50 text-left ml-3 d-flex flex-column justify-content-center">
+                                <span class="h4 d-block"><%= config.author %></span>
+                                <span class="text-muted text-truncate">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                <%= config.description %>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4 mt-n2">
+                    </div>
+
                 </div>
-            </div>
-            <article class="shadow-box" style="padding: 20px">
-                <%- notice %>
-            </article>
+            </section>
+            <section id="tags" class="mt-4 mb-5 bg-white">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-tags mr-2"></i>
+                        公告
+                    </div>
+                    <div class="card-body">
+                        <%- notice %>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>
