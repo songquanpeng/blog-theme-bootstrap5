@@ -191,10 +191,10 @@ a:hover {
     border-style: none;
 }
 
-.markdown-body code,
+code,
 .markdown-body kbd,
 .markdown-body pre {
-    font-family: monospace, monospace;
+    font-family: 'Cascadia Code', Consolas, 'Courier New', 微软雅黑, monospace;
     font-size: 1em;
 }
 
@@ -342,18 +342,6 @@ a:hover {
     margin-left: 0;
 }
 
-.markdown-body code {
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 12px;
-}
-
-.markdown-body pre {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 12px;
-}
-
 .markdown-body .octicon {
     vertical-align: text-bottom;
 }
@@ -426,8 +414,7 @@ a:hover {
 .markdown-body ul,
 .markdown-body ol,
 .markdown-body dl,
-.markdown-body table,
-.markdown-body pre {
+.markdown-body table {
     margin-top: 0;
     margin-bottom: 16px;
 }
@@ -624,7 +611,6 @@ a:hover {
     padding: 0.2em 0.4em;
     margin: 0;
     font-size: 85%;
-    background-color: rgba(27, 31, 35, 0.05);
     border-radius: 3px;
 }
 
@@ -632,14 +618,8 @@ a:hover {
     word-wrap: normal;
 }
 
-.markdown-body pre > code {
-    padding: 0;
-    margin: 0;
-    font-size: 100%;
-    word-break: normal;
-    white-space: pre;
-    /*background: transparent;*/
-    border: 0;
+.markdown-body pre code {
+    padding: 8px;
 }
 
 .markdown-body .highlight {
@@ -649,28 +629,6 @@ a:hover {
 .markdown-body .highlight pre {
     margin-bottom: 0;
     word-break: normal;
-}
-
-.markdown-body .highlight pre,
-.markdown-body pre {
-    padding: 16px;
-    overflow: auto;
-    font-size: 85%;
-    line-height: 1.45;
-    /*background-color: #f6f8fa;*/
-    border-radius: 3px;
-}
-
-.markdown-body pre code {
-    /*display: inline;*/
-    /*max-width: auto;*/
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    line-height: inherit;
-    word-wrap: normal;
-    background-color: transparent;
-    border: 0;
 }
 
 .markdown-body .full-commit .btn-outline:not(:disabled):hover {
@@ -713,4 +671,237 @@ a:hover {
 
 .markdown-body hr {
     border-bottom-color: #eee;
+}
+
+/* Copied from: https://raw.githubusercontent.com/CodeLunatic/halo-theme-simple-bootstrap/master/source/css/post.css */
+
+/*阅读进度样式*/
+#readProgress {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+#contentTitle {
+    word-break: break-all;
+}
+
+#content small, #recommend, #changePost, #contentTitle, #breadcrumb .active, #catalogs {
+    font-family: "微软雅黑", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/*所有的Iframe全宽度显示*/
+#content iframe {
+    width: 100%;
+}
+
+/*目录盒子固定*/
+#catalogBox {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 2rem;
+}
+
+/*目录卡片的高度*/
+#catalogBox .card {
+    max-height: 90vh;
+}
+
+/*目录超出盒子的处理*/
+#catalogs {
+    overflow-y: auto;
+}
+
+/*LG宽度以下样式*/
+@media (max-width: 992px) {
+
+    /*目录盒子*/
+    #catalogBox {
+        position: fixed;
+        z-index: 40;
+        width: 85%;
+        right: -85%;
+        top: 0;
+    }
+
+    /*目录卡片*/
+    #catalogBox .card {
+        max-height: 100vh;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+    }
+
+    /*目录蒙版，初始化隐藏*/
+    #catalogOverBox {
+        display: none;
+        position: fixed;
+        z-index: 30;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, .6);
+    }
+}
+
+/*目录行高*/
+#catalogs p {
+    line-height: 1rem;
+}
+
+/*目录的链接样式*/
+#catalogs p a {
+    color: #333333;
+    text-decoration: none;
+    position: relative;
+}
+
+/*目录链接前面的修饰*/
+#catalogs p a:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -.2rem;
+    left: -1.125rem;
+    height: 0.75rem;
+    width: 0.75rem;
+    border-left: 1px solid #e7e7eb;
+    border-bottom: 1px solid #e7e7eb;
+}
+
+/*目录链接前面的修饰*/
+#catalogs p a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.5500rem;
+    left: -1.125rem;
+    height: 1.25rem;
+    width: 0.75rem;
+    border-left: 1px solid #e7e7eb;
+}
+
+/*代码格式*/
+.code-format {
+    position: relative;
+}
+
+/*代码格式after*/
+.code-format:after {
+    position: absolute;
+    z-index: 10;
+    content: attr(data-code-format);
+    top: 0;
+    right: .375rem;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: #999999;
+    font-size: 0.75rem;
+}
+
+/*复制按钮*/
+.btn-clipboard {
+    opacity: 0;
+    position: absolute;
+    background: #6c757d;
+    z-index: 10;
+    bottom: -0.3rem;
+    right: -0.8rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    padding: 0;
+    color: #ffffff;
+    border: none;
+}
+
+/*鼠标滑过pre标签的时候复制按钮的样式*/
+article pre:hover + .btn-clipboard {
+    opacity: 1;
+}
+
+/*上下篇文章字体大小*/
+#prePost, #nextPost {
+    font-size: 1.2rem;
+}
+
+/*目录按钮样式*/
+#catalogButton {
+    position: fixed;
+    z-index: 20;
+    bottom: 4.5rem;
+    right: .5rem;
+    background: rgba(0, 0, 0, .4);
+    width: 2rem;
+    height: 2rem;
+    color: #ffffff;
+    text-align: center;
+    line-height: 2rem;
+    border-radius: 1rem;
+}
+
+/*标签项盒子的样式*/
+.tag {
+    display: inline-block;
+    margin-right: .3rem;
+    margin-top: .6rem;
+    margin-bottom: .6rem;
+    font-size: .85rem;
+    color: #4a4a4a;
+    font-family: "Consolas", monospace;
+}
+
+/*标签项中的a标签的划过效果*/
+.tag a:hover {
+    font-weight: bold;
+}
+
+/*标签项的文字的样式*/
+.tag .tag-item {
+    border: 1px solid #d6d6d6;
+    border-radius: .25rem;
+    padding: .25rem .5rem;
+    background: #f5f5f5 !important;
+    margin-right: 0;
+}
+
+/* End here */
+
+.tag-font {
+    font-family: "Consolas", "微软雅黑", monospace;
+}
+
+.copyright {
+    display: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.back-top {
+    position: fixed;
+    display: none;
+    z-index: 20;
+    bottom: 1.5rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    width: 2rem;
+    height: 2rem;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.8rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.page-title {
+    word-break: break-all;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 2em;
+    font-family: "微软雅黑", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
