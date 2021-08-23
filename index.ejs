@@ -9,7 +9,7 @@
                             <div class="item-left d-flex flex-column" style="justify-content: space-evenly;">
                                 <a href="/page/<%= page.link %>" class="text-body">
                                     <h4 class="p-0 m-0 fw-bold text-break">
-                                        <%= page.title ? page.title : '无标题' %>
+                                        <%= page.pageStatus === 2 ? '「置顶」' : '' %><%= page.title ? page.title : '无标题' %>
                                     </h4>
                                 </a>
                                 <div class="d-flex align-items-center">
