@@ -906,6 +906,6 @@ img {
     font-family: "微软雅黑", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-#article p a {
+#article p a, #article li a  {
     color: #0969da;
 }
