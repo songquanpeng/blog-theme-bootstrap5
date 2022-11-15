@@ -5,7 +5,7 @@
             <article id="article" class="mb-5 markdown-body" style="padding: 16px 24px">
                 <h1 id="contentTitle"><%-page.title%></h1>
                 <small class="d-inline-block mt-2 ml-1">
-                    <% page.tag.trim().split(" ").forEach(function (tag) {if (tag !== "") {%>
+                    <% page.tag.trim().split(";").forEach(function (tag) {if (tag !== "") {%>
                         <span class="me-3">
                             <i class="bi bi-tags-fill"></i>
                             <a class="is-light tag-font" href='/tag/<%= tag %>'><%= tag %></a>

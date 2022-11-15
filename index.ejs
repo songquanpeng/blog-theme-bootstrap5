@@ -16,7 +16,7 @@
                                     <div class="post-summary text-muted text-break"><%= page.description ? page.description : "无描述信息" %></div>
                                 </div>
                                 <small>
-                                    <% page.tag.trim().split(" ").forEach(function (tag) { if(tag !== ""){ %>
+                                    <% page.tag.trim().split(";").forEach(function (tag) { if(tag !== ""){ %>
                                         <span class="me-3 fw-bold d-md-inline ">
                                             <i class="bi bi-tags-fill"></i>
                                             <a class="text-body mr-1" href='/tag/<%= tag %>'><%= tag %></a>
